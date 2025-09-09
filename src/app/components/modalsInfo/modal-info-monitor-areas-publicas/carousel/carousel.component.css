@@ -1,0 +1,15 @@
+.picsum-img-wrapper {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 80vw; 
+    height: 80vh;
+}
+
+.picsum-img-wrapper img {
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+}

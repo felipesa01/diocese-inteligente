@@ -1,0 +1,136 @@
+<!-- Skeleton loading -->
+<ng-container *ngIf="isLoading; else loaded">
+
+    <div *ngFor="let i of [].constructor(5)" class="d-flex mb-3">
+        <div class="skeleton skeleton-layer-visibilty-icon"></div>
+        <div class="skeleton skeleton-layer-name"></div>
+        <div class="skeleton skeleton-layer-options-icon"></div>
+    </div>
+</ng-container>
+
+
+<ng-template #loaded>
+    <div *ngIf="geoService.mainLayers.length > 0; else emptyMainLayers" cdkOverlayOrigin
+        class="d-flex justify-content-center">
+        <span class="notranslate" style="font-weight: 500;">Camadas carregadas</span>
+    </div>
+
+    <ng-template #emptyMainLayers>
+        <div cdkOverlayOrigin class="p-2 text-center">
+            <span *ngIf="!isOpen; else tipIfOpened">
+                Sem camadas carregadas, use os botões abaixo para carregá-las.
+            </span>
+            <ng-template #tipIfOpened>
+                <span>
+                    Escolha as camadas na janela ao lado para carregá-las no mapa.
+                </span>
+            </ng-template>
+        </div>
+    </ng-template>
+</ng-template>
+
+<div>
+    <div cdkDropList id='mainLayerList' [cdkDropListData]="geoService.mainLayers" (cdkDropListDropped)="drop($event)"
+        style="min-height: 15px; overflow: auto; max-height: 80vh;">
+
+        <!-- Barra de ferramentas no topo da lista (habilitar visualização de todos, info de todos) -->
+        <div *ngIf="geoService.mainLayers.length > 0" class="mb-1" style="margin-right: 0.15rem; margin-left: 0.15rem;">
+            <hr>
+
+            <div class="d-flex align-items-center" style="justify-content: space-evenly;">
+                <button class="btn d-flex p-0"
+                    [matTooltip]="allLayersVisible ? 'Desligar visualização de todas as camadas' : 'Ligar visualização de todas as camadas'"
+                    matTooltipPosition="above" (click)="toggleAllVisible()">
+                    <i class="material-icons-outlined" style="font-size: 18px;width: 20px; color: #696969">
+                        toggle_on
+                    </i>
+                </button>
+
+                <button class="btn d-flex p-0"
+                    [matTooltip]="allLegendOpened ? 'Esconder todas as legendas' : 'Exibir todas as legendas'"
+                    matTooltipPosition="above" (click)="toggleAllLegend()">
+                    <i class="material-icons" style="font-size: 18px;width: 20px; color: #696969;">
+                        list
+                    </i>
+                </button>
+
+                <button class="btn d-flex p-0"
+                    [matTooltip]="allLayersClicavel ? 'Desativar exibição de informações ao clicar no mapa para todas as camadas' : 'Ativar exibição de informações ao clicar no mapa para todas as camadas'"
+                    matTooltipPosition="above" (click)="toggleAllClicavel()">
+                    <i class="material-icons-outlined" style="font-size: 18px;width: 20px; color: #696969;">
+                        info
+                    </i>
+                </button>
+
+                <ng-template #popContent>
+                    <span>Remover todas as camadas?</span>
+
+                    <div class="d-flex my-1" style="justify-content: space-evenly;">
+                        <button class="btn btn-success btn-sm" style="padding: 0.1em 0.3em;"
+                            (click)="removeAllLayers()">Sim</button>
+                        <button class="btn btn-danger btn-sm" style="padding: 0.1em 0.3em;">Não</button>
+                    </div>
+
+                </ng-template>
+                <button class="btn d-flex p-0" matTooltip="Remover todas as camadas" matTooltipPosition="above"
+                    [ngbPopover]="popContent" popoverClass="popover-custom">
+                    <i class="material-icons-outlined" style="font-size: 18px;width: 20px; color: rgb(61, 61, 61);">
+                        delete
+                    </i>
+                </button>
+            </div>
+
+
+
+            <hr style="margin: 0.2em auto;">
+
+        </div>
+
+        <div class="list-item" cdkDrag cdkDragLockAxis="y" *ngFor="let item of geoService.mainLayers"
+            style="border: 1px solid rgb(243, 243, 243); margin-bottom: 0.25em; border-radius: 0.4em; margin-right: 0.15rem; margin-left: 0.15rem;">
+            <div class="d-flex align-items-center">
+                <mat-icon cdkDragHandle style="cursor: move; color: #cacaca;">
+                    drag_indicator
+                </mat-icon>
+
+                <!-- Camada -->
+                <app-layer-item class="col" [item]="item" [secondaryIsOpenedTrigger]="isOpen">
+                </app-layer-item>
+            </div>
+
+            <div class="legend" style="display: none;">
+                <div class="mx-4 pb-2">
+                    <div class="position-relative"
+                        style="border-radius: 0.3em; border: solid 1px #cecece4f; box-shadow: 2px 2px 4px 0px #0000001c;">
+                        <button class="btn btn-sm position-absolute p-0 d-flex" style="right: 0px;"
+                            (click)="closeLegend(item)">
+                            <i class="material-icons-outlined " style="font-size: 1em; color: darkgrey;">close</i>
+                        </button>
+                        <div class="legend-spinner my-1" style="display: flex; justify-content: center;">
+                            <div class="spinner-border text-primary" style="height: 16px; width: 16px; position: absolute;"></div>
+                        </div>
+                        <img class="py-1 ps-1" src="" alt="" style="padding: 0.1em;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="d-flex align-items-center justify-content-center">
+    <div class="demo-trigger-connected-overlay d-flex justify-content-center p-2">
+        <button class="btn btn-outline-primary" style="padding: 2px 6px;" type="button" (click)="openDroneTileList()"
+            matTooltip="Adicionar imagem de drone como camada">
+            <i class="fg-drone" style="font-size: 1.2em;"></i>
+        </button>
+    </div>
+
+    <div class="demo-trigger-connected-overlay d-flex justify-content-center p-2">
+        <button class="btn btn-outline-primary" style="padding: 2px 6px;" type="button"
+            [ngClass]="{'btn-active':isOpen}" (click)="toggleSecList()"
+            [matTooltip]="!isOpen ? 'Adicionar camadas vetoriais' : 'Fechar'">
+            <i class="fg-layer-add-o" style="font-size: 1.2em;"></i>
+        </button>
+    </div>
+</div>

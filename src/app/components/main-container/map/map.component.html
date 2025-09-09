@@ -1,0 +1,82 @@
+<div [id]="id" class="map">
+
+  <div *ngIf="imgSources.length > 0" class="overlay-map"
+    style="height: auto; bottom: 40px; left: 10px; width: auto; background: #ffffff; border: #717171 1px solid; border-radius: .3em;">
+    <div class="d-flex" style="    background: #369;">
+      <span class="m-auto" style="color: white;font-weight: 400;">Legenda</span>
+    </div>
+    <div *ngFor="let img of imgSources">
+      <img class="p-1" [src]="img.img">
+    </div>
+  </div>
+
+  <!-- Main raster tile selector -->
+  <!-- <app-modal-tile-layer *ngIf="turnApplication.haveTileLayer" class="overlay-map modal-tile-layer modal-tile-layer-r"
+    [r_side]="true"></app-modal-tile-layer> -->
+
+  <!-- Secondary raster tile selector -->
+  <!-- <app-modal-tile-layer *ngIf="ctrlSwipeShowed && turnApplication.haveTileLayer"
+    class="overlay-map modal-tile-layer modal-tile-layer-l" [r_side]="false"></app-modal-tile-layer> -->
+
+
+  <div class="overlay-map toggle-container" style="bottom: 40px; right: 10px;" [class.active]="modoMapa === 'mapa'" (click)="trocarCamada()">
+    <span class="option">Satélite</span>
+    <span class="option">Mapa</span>
+    <div class="slider"></div>
+  </div>
+
+
+
+  <!-- Fullscreen button -->
+  <button class="overlay-map" style="top: 15px; right: 15px;" color="primary" mat-mini-fab (click)="toggleFull()">
+    <mat-icon>fullscreen</mat-icon>
+  </button>
+
+  <!-- Refresh button -->
+  <button class="overlay-map" style="top: 15px; left: 15px;" color="primary" mat-mini-fab (click)="goToHome()">
+    <mat-icon>home</mat-icon>
+  </button>
+
+  <button *ngIf="!isOpen" class="overlay-map" style="top: 65px; left: 15px;" color="primary" mat-mini-fab
+    (click)="openDialog()">
+    <mat-icon>list</mat-icon>
+  </button>
+
+
+  <!-- Application buttons -->
+  <!-- <button class="overlay-map" style="top: 65px; left: 15px;" color="primary" mat-mini-fab (click)="navigate('')">
+    <span class="material-symbols-outlined notranslate"> deployed_code_update </span>
+  </button>
+
+  <button class="overlay-map" style="top: 115px; left: 15px;" color="primary" mat-mini-fab
+    (click)="navigate('areaspublicas')">
+    <span class="material-symbols-outlined notranslate"> deployed_code_update </span>
+  </button>
+
+  <button class="overlay-map" style="top: 165px; left: 15px;" color="primary" mat-mini-fab
+    (click)="navigate('zeladoria')">
+    <span class="material-symbols-outlined notranslate"> deployed_code_update </span>
+  </button>
+
+  <button class="overlay-map" style="top: 215px; left: 15px;" color="primary" mat-mini-fab
+    (click)="navigate('cultura')">
+    <span class="material-symbols-outlined notranslate"> deployed_code_update </span>
+  </button> -->
+
+
+
+  <!-- Main toolbox map -->
+  <!-- <app-toolbox class="overlay-map"
+    [ngClass]="!geoService.streetViewIsOpen$.value ? 'toolbox-location' : 'toolbox-location-street-view'"></app-toolbox> -->
+  <!-- <app-toolbox class="overlay-map toolbox-location"></app-toolbox> -->
+
+
+  <!-- Search Toolbar -->
+  <!-- <app-search-toolbar class="overlay-map"
+    style="top: 15px; left: 50%; transform: translate(-50%, 0); max-height: 80%; width: 60%; display: flex; flex-flow: column;"></app-search-toolbar>
+
+
+  <app-timeline-toolbar class="overlay-map timeline-modal" *ngIf="timelineShowed.on"
+    [layerId]="timelineShowed.layerId"></app-timeline-toolbar> -->
+
+</div>

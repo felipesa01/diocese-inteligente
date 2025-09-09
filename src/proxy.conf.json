@@ -1,0 +1,21 @@
+{
+    "/SisGeo-API/files": {
+      "target": "https://intranet.santanadeparnaiba.sp.gov.br/",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/SisGeo-API": {
+      "target": "https://intranet-dsv.santanadeparnaiba.sp.gov.br/",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    
+    "/apiSisGsu/api": {
+      "target": "https://intranet-dsv.santanadeparnaiba.sp.gov.br/",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    }
+  }

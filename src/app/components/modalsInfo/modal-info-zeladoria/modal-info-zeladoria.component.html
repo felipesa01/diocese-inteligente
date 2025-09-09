@@ -1,0 +1,12 @@
+<app-modal-general-info (outputData)="setDataFromGeneral($event)" [showAttributes]="true">
+
+    <div *ngIf="mode == 'info'" class="d-flex justify-content-end align-items-center" >
+        <button class="btn d-flex mat-mdc-tooltip-trigger p-0 justify-content-center mt-1" style="width: 100%; background: rgba(0, 0, 0, .1); border-radius: 3px 3px 3px 3px;" (click)="openPDF()" matTooltipPosition='above' >
+            <!-- <span class="material-symbols-outlined">docs</span> -->
+            <i class="bi bi-file-earmark-pdf-fill me-2" style="font-size: 1.5em;"></i>
+            <span style="align-self: center;">Visualizar OS</span>
+            
+        </button>
+    </div>
+
+</app-modal-general-info>

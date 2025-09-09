@@ -1,0 +1,443 @@
+/* Parish Modal Styles */
+.parish-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  padding: 1rem;
+}
+
+.parish-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.parish-modal {
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  max-width: 42rem;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  transform: scale(0.9) translateY(20px);
+  transition: all 0.3s ease;
+}
+
+.parish-modal-overlay.active .parish-modal {
+  transform: scale(1) translateY(0);
+}
+
+.parish-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #6b7280;
+  cursor: pointer;
+  z-index: 10;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.parish-modal-close:hover {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.parish-modal-content {
+  padding: 1.5rem;
+}
+
+.parish-modal-header {
+  margin-bottom: 1.5rem;
+}
+
+.parish-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.parish-title h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #369;
+  margin: 0;
+}
+
+.icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  stroke-width: 2;
+  color: #6b7280;
+}
+
+.parish-title .icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #369;
+}
+
+.parish-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: anchor-center;
+}
+
+.info-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.info-value {
+  font-size: 0.875rem;
+  /* padding-left: 1.5rem; */
+  margin: 0;
+  color: #4b5563;
+}
+
+.info-value.priest {
+  font-weight: 500;
+  color: #369;
+  text-align: center;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  background: #c9e4ff;
+  color: #369;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-left: 1.5rem;
+  width: fit-content;
+}
+
+.separator {
+  height: 1px;
+  background: #e5e7eb;
+  /* margin: 0.5rem 0; */
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.section-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #369;
+  margin: 0;
+}
+
+.address-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.address-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.address-label {
+  font-weight: 500;
+  color: #374151;
+}
+
+.address-value {
+  font-size: 0.875rem;
+  color: #6b7280;
+  background: #f9fafb;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  margin: 0;
+}
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.contact-item span {
+  font-weight: 500;
+  color: #374151;
+}
+
+.contact-link {
+  color: #369;
+  text-decoration: none;
+  transition: text-decoration 0.2s ease;
+}
+
+.contact-link:hover {
+  text-decoration: underline;
+}
+
+.contact-value {
+  color: #4b5563;
+}
+
+.observations-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.observations-content {
+  background: rgba(249, 250, 251, 0.5);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border-left: 4px solid #369;
+}
+
+.observations-text {
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .parish-modal {
+    background: #1f2937;
+    color: #f9fafb;
+  }
+
+  .parish-modal-close {
+    color: #9ca3af;
+  }
+
+  .parish-modal-close:hover {
+    background: #374151;
+    color: #d1d5db;
+  }
+
+  .parish-title h2 {
+    color: #60a5fa;
+  }
+
+  .parish-title .icon {
+    color: #60a5fa;
+  }
+
+  .icon {
+    color: #9ca3af;
+  }
+
+  .info-label {
+    color: #d1d5db;
+  }
+
+  .info-value {
+    color: #9ca3af;
+  }
+
+  .info-value.priest {
+    color: #60a5fa;
+  }
+
+  .badge {
+    background: #1e3a8a;
+    color: #93c5fd;
+  }
+
+  .separator {
+    background: #374151;
+  }
+
+  .section-title {
+    color: #60a5fa;
+  }
+
+  .address-label {
+    color: #d1d5db;
+  }
+
+  .address-value {
+    color: #9ca3af;
+    background: #111827;
+  }
+
+  .contact-item span {
+    color: #d1d5db;
+  }
+
+  .contact-link {
+    color: #60a5fa;
+  }
+
+  .contact-value {
+    color: #9ca3af;
+  }
+
+  .observations-content {
+    background: rgba(17, 24, 39, 0.5);
+    border-left-color: #60a5fa;
+  }
+
+  .observations-text {
+    color: #9ca3af;
+  }
+
+  .action-button {
+    border-color: #60a5fa;
+    color: #60a5fa;
+  }
+
+  .action-button:hover {
+    background: #60a5fa;
+    color: #111827;
+  }
+
+  .map-button:hover {
+    background: #10b981;
+    border-color: #10b981;
+  }
+
+  .view-3d-button:hover {
+    background: #8b5cf6;
+    border-color: #8b5cf6;
+  }
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #1e40af;
+  background: transparent;
+  color: #1e40af;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  min-width: 150px;
+  justify-content: center;
+}
+
+.action-button:hover {
+  background: #1e40af;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+}
+
+.action-button .icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.map-button:hover {
+  background: #059669;
+  border-color: #059669;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+}
+
+.view-3d-button:hover {
+  background: #7c3aed;
+  border-color: #7c3aed;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .parish-modal-overlay {
+    padding: 0.5rem;
+  }
+
+  .parish-modal {
+    margin: 0;
+    border-radius: 0.5rem;
+  }
+
+  .parish-modal-content {
+    padding: 1rem;
+  }
+
+  .parish-title h2 {
+    font-size: 1.25rem;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .action-button {
+    min-width: 100%;
+  }
+}
